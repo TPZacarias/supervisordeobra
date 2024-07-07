@@ -1,13 +1,11 @@
-package com.example.supervisordeobra.telas
+package com.example.supervisordeobra.TelasIniciais
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FileOpen
 import androidx.compose.material3.Button
@@ -23,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.supervisordeobra.classesOperacionais.Arquivo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -78,7 +77,9 @@ fun telaincerirArquivo(navController: NavController) {
 
         Spacer(modifier = Modifier.size(15.dp))
 
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            var linhaArquivo = Arquivo(updateLocalizacao = { latitude, longitude ->Unit}).linhaDados
+        }) {
             Text(text = "SALVAR ARQUIVO")
         }
     }

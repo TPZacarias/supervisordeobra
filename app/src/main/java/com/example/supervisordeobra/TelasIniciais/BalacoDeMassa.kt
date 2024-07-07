@@ -1,4 +1,4 @@
-package com.example.supervisordeobra.telas
+package com.example.supervisordeobra.TelasIniciais
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,11 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FileOpen
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,12 +23,12 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun supervisao(navController: NavController) {
+fun balacoDeMassa(navController: NavController) {
     val dataHoraVisita = remember { mutableStateOf("") }
     val lote = remember { mutableStateOf("") }
     var kmEstaca = remember { mutableStateOf("") }
-    val estruturaVisitada = remember { mutableStateOf("") }
-    val descricaoDaVisita = remember { mutableStateOf("") }
+    val estrutura = remember { mutableStateOf("") }
+    val origem_destino = remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -109,9 +105,9 @@ fun supervisao(navController: NavController) {
             Text(text = "ESTRUTURA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = estruturaVisitada.value,
+                value = estrutura.value,
                 onValueChange = {
-                    estruturaVisitada.value = it
+                    estrutura.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -125,31 +121,31 @@ fun supervisao(navController: NavController) {
                 .fillMaxWidth()
                 .padding(15.dp)
         ) {
+            Text(text = "ORIGEM OU DESTINO")
+        }
 
+        Spacer(modifier = Modifier.size(5.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp)
+        ) {
             OutlinedTextField(
-                value = descricaoDaVisita.value,
+                value = origem_destino.value,
                 onValueChange = {
 
-                    descricaoDaVisita.value = it
+                    origem_destino.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp),
                 maxLines = 4,
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Filled.FileOpen,
-                        tint = Color.Red,
-                        contentDescription = "abrirArquivo"
-                    )
-                },
-                placeholder = {
-                    Text("DESCREVA O SERVIÇO", color = Color.Red)
-                },
                 label = {
-                    Text(text = "DESCREVA O SERVIÇO SUPERVISIONADO ", color = Color.Red)
+                    Text(text = "ORIGEM OU DESTINO/CORTE OU ATERRO ", color = Color.Red)
                 })
 
         }
+
     }
 }

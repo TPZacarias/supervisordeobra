@@ -1,4 +1,4 @@
-package com.example.supervisordeobra.telas
+package com.example.supervisordeobra.TelasIniciais
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,12 +26,12 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun laboratorio(navController: NavController){
-    val densidadeAeia = remember { mutableStateOf("") }
-    val pesoFunil = remember { mutableStateOf("") }
-    var umidadeOtima = remember { mutableStateOf("") }
-    val densidade = remember { mutableStateOf("") }
-
+fun supervisao(navController: NavController) {
+    val dataHoraVisita = remember { mutableStateOf("") }
+    val lote = remember { mutableStateOf("") }
+    var kmEstaca = remember { mutableStateOf("") }
+    val estruturaVisitada = remember { mutableStateOf("") }
+    val descricaoDaVisita = remember { mutableStateOf("") }
 
     Column(
         modifier = Modifier
@@ -49,9 +49,9 @@ fun laboratorio(navController: NavController){
             Text(text = "DATA E HORA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = densidadeAeia.value,
+                value = dataHoraVisita.value,
                 onValueChange = {
-                    densidadeAeia.value = it
+                    dataHoraVisita.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -68,9 +68,9 @@ fun laboratorio(navController: NavController){
             Text(text = "LOTE:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = pesoFunil.value,
+                value = lote.value,
                 onValueChange = {
-                    pesoFunil.value = it
+                    lote.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -87,9 +87,9 @@ fun laboratorio(navController: NavController){
             Text(text = "KM/ESTACA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = umidadeOtima.value,
+                value = kmEstaca.value,
                 onValueChange = {
-                    umidadeOtima.value = it
+                    kmEstaca.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -108,13 +108,47 @@ fun laboratorio(navController: NavController){
             Text(text = "ESTRUTURA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = densidade.value,
+                value = estruturaVisitada.value,
                 onValueChange = {
-                    densidade.value = it
+                    estruturaVisitada.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
             )
         }
+
+        Spacer(modifier = Modifier.size(5.dp))
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(15.dp)
+        ) {
+
+            OutlinedTextField(
+                value = descricaoDaVisita.value,
+                onValueChange = {
+
+                    descricaoDaVisita.value = it
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp),
+                maxLines = 4,
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Filled.FileOpen,
+                        tint = Color.Red,
+                        contentDescription = "abrirArquivo"
+                    )
+                },
+                placeholder = {
+                    Text("DESCREVA O SERVIÇO", color = Color.Red)
+                },
+                label = {
+                    Text(text = "DESCREVA O SERVIÇO SUPERVISIONADO ", color = Color.Red)
+                })
+
         }
     }
+}

@@ -1,5 +1,4 @@
-package com.example.supervisordeobra.telas
-
+package com.example.supervisordeobra.telas.Ensaio
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

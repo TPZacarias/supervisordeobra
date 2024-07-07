@@ -1,4 +1,4 @@
-package com.example.supervisordeobra.telas
+package com.example.supervisordeobra.telas.Ensaio
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -6,14 +6,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FileOpen
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,18 +16,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun balacoDeMassa(navController: NavController) {
-    val dataHoraVisita = remember { mutableStateOf("") }
-    val lote = remember { mutableStateOf("") }
-    var kmEstaca = remember { mutableStateOf("") }
-    val estrutura = remember { mutableStateOf("") }
-    val origem_destino = remember { mutableStateOf("") }
+fun dadosCampos (navController: NavController){
+    val pesoInicialFrasco = remember { mutableStateOf("") }
+    val pesoFunil = remember { mutableStateOf("") }
+    var pesoSoloUmido = remember { mutableStateOf("") }
+    val teorUmidade = remember { mutableStateOf("") }
+
 
     Column(
         modifier = Modifier
@@ -50,9 +44,9 @@ fun balacoDeMassa(navController: NavController) {
             Text(text = "DATA E HORA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = dataHoraVisita.value,
+                value = pesoInicialFrasco.value,
                 onValueChange = {
-                    dataHoraVisita.value = it
+                    pesoInicialFrasco.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -69,9 +63,9 @@ fun balacoDeMassa(navController: NavController) {
             Text(text = "LOTE:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = lote.value,
+                value = pesoFunil.value,
                 onValueChange = {
-                    lote.value = it
+                    pesoFunil.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -88,9 +82,9 @@ fun balacoDeMassa(navController: NavController) {
             Text(text = "KM/ESTACA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = kmEstaca.value,
+                value = pesoSoloUmido.value,
                 onValueChange = {
-                    kmEstaca.value = it
+                    pesoSoloUmido.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -109,47 +103,14 @@ fun balacoDeMassa(navController: NavController) {
             Text(text = "ESTRUTURA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = estrutura.value,
+                value = teorUmidade.value,
                 onValueChange = {
-                    estrutura.value = it
+                    teorUmidade.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
             )
         }
-
-        Spacer(modifier = Modifier.size(5.dp))
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(15.dp)
-        ) {
-            Text(text = "ORIGEM OU DESTINO")
-        }
-
-        Spacer(modifier = Modifier.size(5.dp))
-
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(15.dp)
-        ) {
-            OutlinedTextField(
-                value = origem_destino.value,
-                onValueChange = {
-
-                    origem_destino.value = it
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(150.dp),
-                maxLines = 4,
-                label = {
-                    Text(text = "ORIGEM OU DESTINO/CORTE OU ATERRO ", color = Color.Red)
-                })
-
-        }
-
     }
+
 }

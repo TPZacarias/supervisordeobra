@@ -1,4 +1,4 @@
-package com.example.supervisordeobra.telas
+package com.example.supervisordeobra.TelasIniciais
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -18,11 +18,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import com.example.supervisordeobra.R
+import com.example.supervisordeobra.telas.Ensaio.Selada
 
 @Composable
-fun telaInicial(navController:NavController) {
+fun TelaInicial(navController: NavController) {
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -33,7 +33,7 @@ fun telaInicial(navController:NavController) {
     ){
         Column(modifier = Modifier.background(color = Color.White)) {
         Image(painter = painterResource(id = R.drawable.inserir_arquivo ) , contentDescription = "", modifier = Modifier
-            .clickable { navController.navigate("telaincerirArquivo") }
+            .clickable { navController.navigate(Selada.arquivo.route) }
             .width(350.dp)
             .height(150.dp)
             .padding(10.dp))
@@ -43,7 +43,7 @@ fun telaInicial(navController:NavController) {
         Column (modifier = Modifier.background(color = Color.White))
         {
             Image(painter = painterResource(id = R.drawable.supervisor_de_obra ) , contentDescription = "", modifier = Modifier
-                    .clickable { navController.navigate("supervisor") }
+                    .clickable { navController.navigate(Selada.supervisor.route) }
                 .width(350.dp)
                 .height(150.dp)
                 .padding(10.dp))
@@ -52,7 +52,7 @@ fun telaInicial(navController:NavController) {
         Column(modifier = Modifier.background(color = Color.White))
         {
             Image(painter = painterResource(id = R.drawable.escavadeira ) , contentDescription = "", modifier = Modifier
-                    .clickable {navController.navigate("balacoDeMassa")}
+                    .clickable {navController.navigate(Selada.balanco.route)}
                 .width(350.dp)
                 .height(150.dp)
                 .padding(10.dp))
@@ -61,7 +61,7 @@ fun telaInicial(navController:NavController) {
         Column (modifier = Modifier.background(color = Color.White))
         {
             Image(painter = painterResource(id = R.drawable.grau_de_compacta__o ) , contentDescription = "", modifier = Modifier
-                    .clickable { navController.navigate("grauDeCompactacao") }
+                    .clickable { navController.navigate(Selada.compactacao.route) }
                 .width(350.dp)
                 .height(150.dp)
                 .padding(10.dp))

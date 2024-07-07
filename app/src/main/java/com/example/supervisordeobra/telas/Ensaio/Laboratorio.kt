@@ -1,4 +1,4 @@
-package com.example.supervisordeobra.telas
+package com.example.supervisordeobra.telas.Ensaio
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -21,11 +21,11 @@ import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun dadosCampos (navController: NavController){
-    val pesoInicialFrasco = remember { mutableStateOf("") }
+fun laboratorio(navController: NavController){
+    val densidadeAeia = remember { mutableStateOf("") }
     val pesoFunil = remember { mutableStateOf("") }
-    var pesoSoloUmido = remember { mutableStateOf("") }
-    val teorUmidade = remember { mutableStateOf("") }
+    var umidadeOtima = remember { mutableStateOf("") }
+    val densidade = remember { mutableStateOf("") }
 
 
     Column(
@@ -44,9 +44,9 @@ fun dadosCampos (navController: NavController){
             Text(text = "DATA E HORA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = pesoInicialFrasco.value,
+                value = densidadeAeia.value,
                 onValueChange = {
-                    pesoInicialFrasco.value = it
+                    densidadeAeia.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -82,9 +82,9 @@ fun dadosCampos (navController: NavController){
             Text(text = "KM/ESTACA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = pesoSoloUmido.value,
+                value = umidadeOtima.value,
                 onValueChange = {
-                    pesoSoloUmido.value = it
+                    umidadeOtima.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -103,14 +103,13 @@ fun dadosCampos (navController: NavController){
             Text(text = "ESTRUTURA:")
             Spacer(modifier = Modifier.size(5.dp))
             OutlinedTextField(
-                value = teorUmidade.value,
+                value = densidade.value,
                 onValueChange = {
-                    teorUmidade.value = it
+                    densidade.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
             )
         }
+        }
     }
-
-}
