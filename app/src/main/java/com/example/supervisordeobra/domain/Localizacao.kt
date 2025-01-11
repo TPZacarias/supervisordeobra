@@ -1,29 +1,27 @@
-package com.example.supervisordeobra.classesOperacionais
+package com.example.supervisordeobra.domain
 
-
+import android.Manifest
+import android.content.Context
+import android.content.pm.PackageManager
+import android.util.Log
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.location.Granularity
+import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
 import com.google.android.gms.location.Priority
 import com.google.android.gms.location.SettingsClient
-import java.util.Calendar.getInstance
-import android.Manifest
-import android.content.Context
-import android.content.pm.PackageManager
-import android.util.Log
-import androidx.core.app.ActivityCompat
-import com.google.android.gms.common.GoogleApiAvailability
-import com.google.android.gms.location.LocationCallback
 
+open class Localizacao(val updateLocalizacao: (Double, Double) -> Unit) {
 
-open class Localizacao(val updateLocalizacao: (Double, Double) -> Unit){
     var latitude = 0.0
     var longitude = 0.0
 
-    fun captarLocalizacao( contexto: Context) {
+    fun captarLocalizacao(contexto: Context) {
 
         val googleApiAvailability = GoogleApiAvailability.getInstance()
         val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(contexto)
@@ -51,7 +49,8 @@ open class Localizacao(val updateLocalizacao: (Double, Double) -> Unit){
         val timeInterval = (5000)
         var locationRequest = LocationRequest.Builder(
             Priority.PRIORITY_HIGH_ACCURACY,
-            timeInterval.toLong()).apply {
+            timeInterval.toLong()
+        ).apply {
             setDurationMillis(Long.MAX_VALUE)
             setMinUpdateIntervalMillis(1000)
             setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
@@ -67,14 +66,13 @@ open class Localizacao(val updateLocalizacao: (Double, Double) -> Unit){
             .addOnSuccessListener() {
                 Log.i("Teste", it.locationSettingsStates.toString())
             }
-            .addOnFailureListener {
-                    exception ->
+            .addOnFailureListener { exception ->
                 Log.d("Location", "Oops location failed with exception: $exception")
             }
-        val locationCallback = object : LocationCallback(){
+        val locationCallback = object : LocationCallback() {
             override fun onLocationResult(result: LocationResult) {
                 super.onLocationResult(result)
-                result.locations.lastOrNull()?.let {location ->
+                result.locations.lastOrNull()?.let { location ->
                     latitude = location.latitude
                     longitude = location.longitude
                     updateLocalizacao(latitude, longitude)
@@ -82,6 +80,5 @@ open class Localizacao(val updateLocalizacao: (Double, Double) -> Unit){
             }
         }
         provedorClienteLocalizacao.requestLocationUpdates(locationRequest, locationCallback, null)
-
     }
 }

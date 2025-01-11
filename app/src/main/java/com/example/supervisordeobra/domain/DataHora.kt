@@ -1,4 +1,4 @@
-package com.example.supervisordeobra.classesOperacionais
+package com.example.supervisordeobra.domain
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun dataHora(){
+fun dataHora() {
     val dataFormatada: DateTimeFormatter =
         DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)
     val captarHoraMain: LocalDateTime = now()

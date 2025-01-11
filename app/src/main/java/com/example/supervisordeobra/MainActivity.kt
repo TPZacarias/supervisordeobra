@@ -3,7 +3,6 @@ package com.example.supervisordeobra
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.supervisordeobra.classesOperacionais.Arquivo
 import com.example.supervisordeobra.ui.theme.SupervisorDeObraTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,12 +10,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SupervisorDeObraTheme {
-
-                navegar()
+                Navegar()
             }
         }
     }
 }
-
-
 
