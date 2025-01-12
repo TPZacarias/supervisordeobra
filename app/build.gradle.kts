@@ -68,5 +68,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("com.google.android.gms:play-services-location:21.3.0")
-}
 
+    // JSON processing
+    implementation("com.google.code.gson:gson:2.11.0")
+}

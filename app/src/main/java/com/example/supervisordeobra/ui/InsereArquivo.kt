@@ -25,13 +25,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.supervisordeobra.data.Arquivo
+import com.example.supervisordeobra.data.ArquivoManager
+import com.example.supervisordeobra.data.ArquivoModel
+import com.example.supervisordeobra.domain.ArquivoMapper
 
 @Composable
 fun InsereArquivo(navController: NavController = rememberNavController()) {
 
     val nomeDoArquivo = remember { mutableStateOf("") }
-    val insiraArquivo = remember { mutableStateOf("") }
+    val dadosDoArquivo = remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -55,10 +57,11 @@ fun InsereArquivo(navController: NavController = rememberNavController()) {
         ) {
             Spacer(modifier = Modifier.size(40.dp))
 
+            // Nome da obra
             OutlinedTextField(
-                value = insiraArquivo.value,
+                value = nomeDoArquivo.value,
                 onValueChange = {
-                    insiraArquivo.value = it
+                    nomeDoArquivo.value = it
                 },
                 modifier = Modifier.fillMaxWidth(),
                 placeholder = {
@@ -70,10 +73,11 @@ fun InsereArquivo(navController: NavController = rememberNavController()) {
             )
             Spacer(modifier = Modifier.size(15.dp))
 
+            // Dados do arquivo
             OutlinedTextField(
-                value = nomeDoArquivo.value,
+                value = dadosDoArquivo.value,
                 onValueChange = {
-                    nomeDoArquivo.value = it
+                    dadosDoArquivo.value = it
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -97,8 +101,14 @@ fun InsereArquivo(navController: NavController = rememberNavController()) {
             Spacer(modifier = Modifier.size(15.dp))
 
             Button(onClick = {
-                var linhaArquivo =
-                    Arquivo(updateLocalizacao = { latitude, longitude -> Unit }).linhaDados
+                val arquivo = ArquivoModel(
+                    nomeArquivo = nomeDoArquivo.value,
+                    dadosArquivo = dadosDoArquivo.value
+                )
+                val jsonArquivoModel = ArquivoMapper.toJson(arquivo)
+                ArquivoManager.salvarArquivo(nomeDoArquivo.value, jsonArquivoModel)
+
+                //val arquivoModel = ArquivoManager.readFromFile(LocalContext.current, nomeDoArquivo)
             }) {
                 Text(text = "SALVAR ARQUIVO")
             }
