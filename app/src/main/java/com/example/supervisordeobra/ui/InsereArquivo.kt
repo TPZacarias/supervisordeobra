@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -34,6 +35,7 @@ fun InsereArquivo(navController: NavController = rememberNavController()) {
 
     val nomeDoArquivo = remember { mutableStateOf("") }
     val dadosDoArquivo = remember { mutableStateOf("") }
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -106,7 +108,7 @@ fun InsereArquivo(navController: NavController = rememberNavController()) {
                     dadosArquivo = dadosDoArquivo.value
                 )
                 val jsonArquivoModel = ArquivoMapper.toJson(arquivo)
-                ArquivoManager.salvarArquivo(nomeDoArquivo.value, jsonArquivoModel)
+                ArquivoManager.salvarArquivo(context, nomeDoArquivo.value, jsonArquivoModel)
 
                 //val arquivoModel = ArquivoManager.readFromFile(LocalContext.current, nomeDoArquivo)
             }) {
